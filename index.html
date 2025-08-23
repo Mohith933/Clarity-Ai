@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clarity AI - Voice App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Clarity AI</div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="index.html" class="active">Voice App</a></li>
+        </ul>
+    </nav>
+
+    <!-- App Section -->
+    <section class="app-section">
+        <h2>Clarity AI Voice Assistant</h2>
+        <p>Speak or type, and let Clarity AI amplify your voice.</p>
+
+        <!-- Input Box -->
+        <textarea id="userInput" placeholder="Type your message here..."></textarea>
+
+        <!-- Buttons -->
+        <div class="controls">
+            <button id="micButton" class="btn-secondary">🎤 Speak</button>
+            <button id="sendButton" class="btn-primary">Send</button>
+        </div>
+
+        <!-- Output -->
+        <div class="output">
+            <h3>AI Response:</h3>
+            <p id="aiResponse">Waiting for input...</p>
+            <audio id="aiAudio" controls style="display:none;"></audio>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Clarity AI. All rights reserved.</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="app.js"></script>
+</body>
+</html>
