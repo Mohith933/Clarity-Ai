@@ -384,6 +384,21 @@ body.dark-mode .footer {
     background: #111827;
     color: #9ca3af;
 }
+body.dark-mode .hero{
+    background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
+body.dark-mode .features{
+     background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
+body.dark-mode .call-to-action{
+     background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -398,5 +413,6 @@ body.dark-mode .footer {
     max-width: 80%;
   }
 }
+
 
 
