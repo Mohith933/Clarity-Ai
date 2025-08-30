@@ -43,15 +43,31 @@ sendButton.addEventListener("click", () => {
   }
 });
 
-const modeToggle = document.getElementById('modeToggle');
+// app.js
+const modeToggleBtn = document.getElementById('modeToggle');
 
-modeToggle.addEventListener('click', () => {
+modeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-
-    if(document.body.classList.contains('dark-mode')) {
-        modeToggle.textContent = '☀️ Light Mode';
+    
+    // Toggle button icon/text
+    if (document.body.classList.contains('dark-mode')) {
+        modeToggleBtn.textContent = '☀️ Light Mode';
+        localStorage.setItem('theme', 'dark');
     } else {
-        modeToggle.textContent = '🌙 Dark Mode';
+        modeToggleBtn.textContent = '🌙 Dark Mode';
+        localStorage.setItem('theme', 'light');
     }
 });
+
+// On page load: check localStorage and apply theme
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        modeToggleBtn.textContent = '☀️ Light Mode';
+    } else {
+        modeToggleBtn.textContent = '🌙 Dark Mode';
+    }
+});
+
+
 
