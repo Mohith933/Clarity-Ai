@@ -1,72 +1,44 @@
-// ==== DOM Elements ====
-const userInput = document.getElementById("userInput");
-const micButton = document.getElementById("micButton");
-const sendButton = document.getElementById("sendButton");
-const aiResponse = document.getElementById("aiResponse");
-
-// ==== Speech Recognition Setup ====
+// Speech Recognition Setup
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
 let recognition;
 
 if (SpeechRecognition) {
-    recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-    recognition.continuous = false;
+  recognition = new SpeechRecognition();
 
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        userInput.value = transcript;
-    };
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.continuous = false;
 
-    recognition.onerror = (err) => {
-        alert("🎤 Error: " + err.error);
-    };
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    userInput.value = transcript;  // Put recognized speech in textbox
+    aiResponse.textContent = "🎤 Speech recognized! You can now send or edit the text.";
+  };
+
+  recognition.onerror = (err) => {
+    alert("🎤 Error: " + err.error);
+  };
 } else {
-    alert("❌ Your browser does not support Speech Recognition.");
+  alert("Speech Recognition not supported in this browser");
 }
 
-// ==== Text-to-Speech Function ====
-function speak(text) {
-    if ('speechSynthesis' in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.pitch = 1;
-        utterance.rate = 1;
-        utterance.volume = 1;
-        window.speechSynthesis.speak(utterance);
-    } else {
-        alert("❌ Your browser does not support Text-to-Speech.");
-    }
-}
-
-// ==== Simulated AI Response ====
-function generateFakeAIResponse(input) {
-    // Simple dummy response — you can enhance this or use real AI APIs
-    return `You said: "${input}". How can I assist you further?`;
-}
-
-// ==== Mic Button: Start Listening ====
+// Start recognition when mic button clicked
 micButton.addEventListener("click", () => {
-    if (recognition) {
-        recognition.start();
-        aiResponse.textContent = "🎤 Listening...";
-    }
+  if (recognition) {
+    recognition.start();
+    aiResponse.textContent = "🎤 Listening...";
+  }
 });
 
-// ==== Send Button: Generate & Speak Response ====
+// Send button just shows the current input text as a response (no backend)
 sendButton.addEventListener("click", () => {
-    const input = userInput.value.trim();
-    if (input) {
-        aiResponse.textContent = "🤖 Processing...";
+  const text = userInput.value.trim();
 
-        // Simulate response
-        const response = generateFakeAIResponse(input);
-
-        // Display and speak
-        aiResponse.textContent = response;
-        speak(response);
-    } else {
-        aiResponse.textContent = "⚠️ Please type or speak something first.";
-    }
+  if (text) {
+    // Just simulate a response without backend
+    aiResponse.textContent = `You said: "${text}"`;
+  } else {
+    aiResponse.textContent = "Please enter or speak something first.";
+  }
 });
