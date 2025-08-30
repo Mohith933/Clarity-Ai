@@ -377,8 +377,6 @@ body.dark-mode .app-section {
 
 body.dark-mode .output {
     background: #111827;
-    border-radius: 0.5rem;
-    padding: 1rem;
     color: #d1d5db;
 }
 
@@ -400,4 +398,5 @@ body.dark-mode .footer {
     max-width: 80%;
   }
 }
+
 
