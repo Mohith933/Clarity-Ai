@@ -313,6 +313,79 @@ textarea {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #f3f4f6;
+}
+
+body.dark-mode .navbar {
+    background: #1f2937;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar .logo {
+    color: #3b82f6; /* lighter blue */
+}
+
+body.dark-mode .navbar ul li a {
+    color: #cbd5e1;
+}
+
+body.dark-mode .navbar ul li a:hover {
+    color: #3b82f6;
+}
+
+body.dark-mode .btn-primary {
+    background: #3b82f6;
+    color: #fff !important;
+    border: none;
+}
+
+body.dark-mode .btn-primary:hover {
+    background: #2563eb;
+}
+
+body.dark-mode .btn-secondary {
+    background: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6 !important;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: #3b82f6;
+    color: #fff !important;
+}
+
+body.dark-mode textarea {
+    background: #1f2937;
+    border: 1px solid #374151;
+    color: #e0e0e0;
+}
+
+body.dark-mode .app-section {
+    background: #1f2937;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+    color: #e0e0e0;
+}
+
+body.dark-mode .output {
+    background: #111827;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    color: #d1d5db;
+}
+
+body.dark-mode .footer {
+    background: #111827;
+    color: #9ca3af;
+}
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
@@ -327,3 +400,4 @@ textarea {
     max-width: 80%;
   }
 }
+
