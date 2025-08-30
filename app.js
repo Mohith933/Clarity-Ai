@@ -44,23 +44,27 @@ sendButton.addEventListener("click", () => {
 });
 
 // app.js
-const modeToggleBtn = document.getElementById('modeToggle');
-
-modeToggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    
-    // Toggle button icon/text
-    if (document.body.classList.contains('dark-mode')) {
-        modeToggleBtn.textContent = '☀️ Light Mode';
-        localStorage.setItem('theme', 'dark');
-    } else {
-        modeToggleBtn.textContent = '🌙 Dark Mode';
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// On page load: check localStorage and apply theme
 window.addEventListener('DOMContentLoaded', () => {
+    const modeToggleBtn = document.getElementById('modeToggle');
+    
+    if (!modeToggleBtn) {
+        console.warn('modeToggle button not found!');
+        return;
+    }
+    
+    modeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+
+        if (document.body.classList.contains('dark-mode')) {
+            modeToggleBtn.textContent = '☀️ Light Mode';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            modeToggleBtn.textContent = '🌙 Dark Mode';
+            localStorage.setItem('theme', 'light');
+        }
+    });
+
+    // Apply saved theme on load
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
         modeToggleBtn.textContent = '☀️ Light Mode';
@@ -68,6 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
         modeToggleBtn.textContent = '🌙 Dark Mode';
     }
 });
+
 
 
 
