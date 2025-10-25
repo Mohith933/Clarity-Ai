@@ -16,28 +16,23 @@
     </ul>
     <button id="modeToggle" class="btn-secondary">🌙 Dark Mode</button>
 </nav>
+
+    <<section class="app-section">
+  <h2>Clarity AI - Text to Voice</h2>
+  <p>Type or paste a paragraph below, and listen to it using Web Speech API.</p>
 
-    <!-- App Section -->
-    <section class="app-section">
-        <h2>Clarity AI Voice Assistant</h2>
-        <p>Speak or type, and let Clarity AI amplify your voice.</p>
+  <textarea id="userInput" placeholder="Enter your paragraph here..." rows="6"></textarea>
 
-        <!-- Input Box -->
-        <textarea id="userInput" placeholder="Type your message here..."></textarea>
+  <div class="controls">
+    <button id="speakButton" class="btn-primary">🔊 Speak</button>
+    <button id="stopButton" class="btn-secondary">⏹ Stop</button>
+  </div>
 
-        <!-- Buttons -->
-        <div class="controls">
-            <button id="micButton" class="btn-secondary">🎤 Speak</button>
-            <button id="sendButton" class="btn-primary">Send</button>
-        </div>
-
-        <!-- Output -->
-        <div class="output">
-            <h3>AI Response:</h3>
-            <p id="aiResponse">Waiting for input...</p>
-            <audio id="aiAudio" controls style="display:none;"></audio>
-        </div>
-    </section>
+  <div class="output">
+    <h3>Status:</h3>
+    <p id="aiResponse">Waiting for input...</p>
+  </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
