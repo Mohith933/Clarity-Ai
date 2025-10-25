@@ -1,46 +1,64 @@
-// Speech Recognition Setup
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+document.addEventListener("DOMContentLoaded", () => {
+  const speakButton = document.getElementById("speakButton");
+  const stopButton = document.getElementById("stopButton");
+  const userInput = document.getElementById("userInput");
+  const aiResponse = document.getElementById("aiResponse");
 
-let recognition;
+  // Initialize Speech Synthesis
+  const synth = window.speechSynthesis;
 
-if (SpeechRecognition) {
-  recognition = new SpeechRecognition();
+  // Function to speak text
+  function speakText(text, lang = "en-US") {
+    if (!("speechSynthesis" in window)) {
+      alert("Your browser does not support text-to-speech!");
+      return;
+    }
 
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.continuous = false;
+    if (synth.speaking) {
+      synth.cancel(); // Stop ongoing speech
+    }
 
-  recognition.onresult = (event) => {
-    const transcript = event.results[0][0].transcript;
-    userInput.value = transcript;  // Put recognized speech in textbox
-    aiResponse.textContent = "🎤 Speech recognized! You can now send or edit the text.";
-  };
+    if (text.trim().length === 0) {
+      aiResponse.textContent = "⚠️ Please enter a paragraph first.";
+      return;
+    }
 
-  recognition.onerror = (err) => {
-    alert("🎤 Error: " + err.error);
-  };
-} else {
-  alert("Speech Recognition not supported in this browser");
-}
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    utterance.rate = 1.0;   // normal speed
+    utterance.pitch = 1.0;  // normal tone
+    utterance.volume = 1.0; // full volume
 
-// Start recognition when mic button clicked
-micButton.addEventListener("click", () => {
-  if (recognition) {
-    recognition.start();
-    aiResponse.textContent = "🎤 Listening...";
+    // Pick best matching voice (based on language)
+    const voices = synth.getVoices();
+    utterance.voice = voices.find(v => v.lang === lang) || voices[0];
+
+    // Update UI
+    aiResponse.textContent = "🔊 Speaking...";
+    synth.speak(utterance);
+
+    utterance.onend = () => {
+      aiResponse.textContent = "✅ Finished speaking.";
+    };
+
+    utterance.onerror = (err) => {
+      aiResponse.textContent = "❌ Speech error occurred.";
+      console.error(err);
+    };
   }
-});
 
-// Send button just shows the current input text as a response (no backend)
-sendButton.addEventListener("click", () => {
-  const text = userInput.value.trim();
+  // Button Events
+  speakButton.addEventListener("click", () => {
+    const text = userInput.value;
+    speakText(text);
+  });
 
-  if (text) {
-    // Just simulate a response without backend
-    aiResponse.textContent = `You said: "${text}"`;
-  } else {
-    aiResponse.textContent = "Please enter or speak something first.";
-  }
+  stopButton.addEventListener("click", () => {
+    if (synth.speaking) {
+      synth.cancel();
+      aiResponse.textContent = "⏹ Stopped speaking.";
+    }
+  });
 });
 
 // app.js
