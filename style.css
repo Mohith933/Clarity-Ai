@@ -92,7 +92,7 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 5% 10%;
-    background: linear-gradient(to right, #eef2ff, #ffffff);
+    background-color: linear-gradient(to right, #eef2ff, #ffffff);
     gap: 2rem;
 }
 .hero-text {
@@ -471,6 +471,7 @@ body.dark-mode .call-to-action a.btn-secondary:hover {
     max-width: 80%;
   }
 }
+
 
 
 
