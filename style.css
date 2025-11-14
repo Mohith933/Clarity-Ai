@@ -256,6 +256,7 @@ a {
 
 /* ========== Footer ========== */
 .footer {
+    margin-top:25vh;
     text-align: center;
     padding: 2rem 5%;
     background: #111827;
@@ -471,6 +472,7 @@ body.dark-mode .call-to-action a.btn-secondary:hover {
     max-width: 80%;
   }
 }
+
 
 
 
