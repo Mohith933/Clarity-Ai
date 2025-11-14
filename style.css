@@ -378,7 +378,6 @@ body.dark-mode .app-section {
 }
 
 body.dark-mode .output {
-    background: #111827;
     color: #d1d5db;
 }
 
@@ -472,6 +471,7 @@ body.dark-mode .call-to-action a.btn-secondary:hover {
     max-width: 80%;
   }
 }
+
 
 
 
