@@ -1,52 +1,88 @@
+// ===============================
+// MyTone AI – Text-to-Voice Engine
+// ===============================
+
+// DOM Elements
+const userInput = document.getElementById("userInput");
 const speakButton = document.getElementById("speakButton");
 const stopButton = document.getElementById("stopButton");
-const userInput = document.getElementById("userInput");
 const aiResponse = document.getElementById("aiResponse");
+
 const languageSelect = document.getElementById("languageSelect");
 const toneSelect = document.getElementById("toneSelect");
-
-let synth = window.speechSynthesis;
 const emotionSelect = document.getElementById("emotionSelect");
 
-function applyEmotionSettings(utter, emotion) {
-    switch (emotion) {
-        case "happy":
-            utter.pitch = 1.3;
-            utter.rate = 1.2;
-            utter.volume = 1;
-            break;
-        case "friendly":
-            utter.pitch = 1.15;
-            utter.rate = 1.05;
-            utter.volume = 1;
-            break;
-        case "soft":
-            utter.pitch = 1;
-            utter.rate = 0.9;
-            utter.volume = 0.5;
-            break;
-        case "sad":
-            utter.pitch = 0.8;
-            utter.rate = 0.85;
-            utter.volume = 0.7;
-            break;
-        case "energetic":
-            utter.pitch = 1.4;
-            utter.rate = 1.3;
-            utter.volume = 1;
-            break;
-        case "calm":
-            utter.pitch = 0.95;
-            utter.rate = 0.95;
-            utter.volume = 0.8;
-            break;
-        default:
-            utter.pitch = 1;
-            utter.rate = 1;
-            utter.volume = 1;
+const modeToggle = document.getElementById("modeToggle");
+
+// Speech Synthesis
+let synth = window.speechSynthesis;
+let voices = [];
+
+// ===============================
+// LOAD VOICES
+// ===============================
+function loadVoices() {
+    voices = synth.getVoices();
+
+    // Clear dropdown
+    languageSelect.innerHTML = "";
+
+    // Add detected languages
+    const addedLangs = new Set();
+
+    voices.forEach(voice => {
+        if (!addedLangs.has(voice.lang)) {
+            addedLangs.add(voice.lang);
+
+            let option = document.createElement("option");
+            option.value = voice.lang;
+            option.textContent = `${voice.lang} (${voice.name})`;
+            languageSelect.appendChild(option);
+        }
+    });
+
+    // If no voices found → show default
+    if (voices.length === 0) {
+        languageSelect.innerHTML = `<option value="en-US">en-US (Default)</option>`;
     }
 }
 
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+// ===============================
+// EMOTION SETTINGS
+// ===============================
+function applyEmotionSettings(utter, emotion) {
+    switch (emotion) {
+        case "happy":
+            utter.pitch = 1.4;
+            utter.rate = 1.1;
+            break;
+        case "sad":
+            utter.pitch = 0.7;
+            utter.rate = 0.9;
+            break;
+        case "friendly":
+            utter.pitch = 1.2;
+            utter.rate = 1.0;
+            break;
+        case "soft":
+            utter.pitch = 0.9;
+            utter.rate = 0.8;
+            break;
+        case "excited":
+            utter.pitch = 1.5;
+            utter.rate = 1.2;
+            break;
+        default:
+            break;
+    }
+}
+
+// ===============================
+// SPEAK BUTTON
+// ===============================
 speakButton.addEventListener("click", () => {
     const text = userInput.value.trim();
     if (!text) {
@@ -56,42 +92,48 @@ speakButton.addEventListener("click", () => {
 
     let utter = new SpeechSynthesisUtterance(text);
 
-    // Language
-    utter.lang = languageSelect.value;
+    // Selected Language
+    const selectedLang = languageSelect.value;
+    utter.lang = selectedLang;
 
-    // Tone (pitch)
+    // Match voice
+    const matchVoice = voices.find(v => v.lang === selectedLang);
+    if (matchVoice) {
+        utter.voice = matchVoice;
+    } else {
+        aiResponse.textContent = `⚠️ No voice found for ${selectedLang}, using default voice`;
+    }
+
+    // Tone (Pitch)
     utter.pitch = parseFloat(toneSelect.value);
 
-    // Emotion settings
+    // Emotion
     applyEmotionSettings(utter, emotionSelect.value);
 
     // Speak
+    synth.cancel();
     synth.speak(utter);
 
-    aiResponse.textContent = "Speaking with emotion...";
+    aiResponse.textContent = "Speaking...";
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+// ===============================
+// STOP BUTTON
+// ===============================
+stopButton.addEventListener("click", () => {
+    synth.cancel();
+    aiResponse.textContent = "Stopped.";
+});
 
-const modeToggle = document.getElementById("modeToggle");
-
-// Load saved theme
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-mode");
-    modeToggle.textContent = "☀️ Light Mode";
-}
-
-// Toggle
+// ===============================
+// DARK MODE
+// ===============================
 modeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
     if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
         modeToggle.textContent = "☀️ Light Mode";
     } else {
-        localStorage.setItem("theme", "light");
         modeToggle.textContent = "🌙 Dark Mode";
     }
-});
-
 });
