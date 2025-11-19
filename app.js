@@ -70,3 +70,25 @@ speakButton.addEventListener("click", () => {
 
     aiResponse.textContent = "Speaking with emotion...";
 });
+
+// Dark Mode Toggle
+const modeToggle = document.getElementById("modeToggle");
+
+// Check saved mode
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+    modeToggle.textContent = "☀️ Light Mode";
+}
+
+// Toggle on click
+modeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+        modeToggle.textContent = "☀️ Light Mode";
+    } else {
+        localStorage.setItem("theme", "light");
+        modeToggle.textContent = "🌙 Dark Mode";
+    }
+});
