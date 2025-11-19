@@ -274,32 +274,7 @@ a {
     margin-top: 1rem;
     font-size: 0.85rem;
 }
-textarea {
-  width: 100%;
-  height: 120px;
-  padding: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  font-size: 1rem;
-  resize: none;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0;
-}
-
-.output {
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.output h3 {
-  margin-bottom: 0.5rem;
-}
+/* ========== Voice App Section ========== */
 .app-section {
   max-width: 800px;
   margin: 4rem auto;
@@ -313,8 +288,97 @@ textarea {
 .app-section h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #111;
 }
 
+.app-section p {
+  color: #555;
+}
+
+/* ========== Textarea ========== */
+textarea {
+  width: 100%;
+  height: 140px;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  background: #fff;
+  transition: 0.3s;
+}
+
+textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
+  outline: none;
+}
+
+/* ========== Dropdowns ========== */
+.dropdown {
+  width: 100%;
+  padding: 0.85rem;
+  margin: 1rem 0;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.dropdown:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
+  outline: none;
+}
+
+/* ========== Controls (Buttons Group) ========== */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* ========== Output Section ========== */
+.output {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.output h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.output p {
+  color: #444;
+  font-size: 1rem;
+}
+
+/* ========== Dark Mode for Voice App ========== */
+body.dark-mode .app-section {
+  background: #1f2937;
+  color: #e0e0e0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+}
+
+body.dark-mode textarea {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #e0e0e0;
+}
+
+body.dark-mode .dropdown {
+  background: #1f2937;
+  border: 1px solid #374151;
+  color: #d1d5db;
+}
+
+body.dark-mode .output p {
+  color: #d1d5db;
+}
 body.dark-mode {
     background: #121212;
     color: #e0e0e0;
