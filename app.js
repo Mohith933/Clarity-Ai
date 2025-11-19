@@ -71,16 +71,17 @@ speakButton.addEventListener("click", () => {
     aiResponse.textContent = "Speaking with emotion...";
 });
 
-// Dark Mode Toggle
+document.addEventListener("DOMContentLoaded", () => {
+
 const modeToggle = document.getElementById("modeToggle");
 
-// Check saved mode
+// Load saved theme
 if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
     modeToggle.textContent = "☀️ Light Mode";
 }
 
-// Toggle on click
+// Toggle
 modeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
@@ -91,4 +92,6 @@ modeToggle.addEventListener("click", () => {
         localStorage.setItem("theme", "light");
         modeToggle.textContent = "🌙 Dark Mode";
     }
+});
+
 });
