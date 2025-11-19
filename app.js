@@ -1,96 +1,72 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const speakButton = document.getElementById("speakButton");
-  const stopButton = document.getElementById("stopButton");
-  const userInput = document.getElementById("userInput");
-  const aiResponse = document.getElementById("aiResponse");
+const speakButton = document.getElementById("speakButton");
+const stopButton = document.getElementById("stopButton");
+const userInput = document.getElementById("userInput");
+const aiResponse = document.getElementById("aiResponse");
+const languageSelect = document.getElementById("languageSelect");
+const toneSelect = document.getElementById("toneSelect");
 
-  // Initialize Speech Synthesis
-  const synth = window.speechSynthesis;
+let synth = window.speechSynthesis;
+const emotionSelect = document.getElementById("emotionSelect");
 
-  // Function to speak text
-  function speakText(text, lang = "en-US") {
-    if (!("speechSynthesis" in window)) {
-      alert("Your browser does not support text-to-speech!");
-      return;
+function applyEmotionSettings(utter, emotion) {
+    switch (emotion) {
+        case "happy":
+            utter.pitch = 1.3;
+            utter.rate = 1.2;
+            utter.volume = 1;
+            break;
+        case "friendly":
+            utter.pitch = 1.15;
+            utter.rate = 1.05;
+            utter.volume = 1;
+            break;
+        case "soft":
+            utter.pitch = 1;
+            utter.rate = 0.9;
+            utter.volume = 0.5;
+            break;
+        case "sad":
+            utter.pitch = 0.8;
+            utter.rate = 0.85;
+            utter.volume = 0.7;
+            break;
+        case "energetic":
+            utter.pitch = 1.4;
+            utter.rate = 1.3;
+            utter.volume = 1;
+            break;
+        case "calm":
+            utter.pitch = 0.95;
+            utter.rate = 0.95;
+            utter.volume = 0.8;
+            break;
+        default:
+            utter.pitch = 1;
+            utter.rate = 1;
+            utter.volume = 1;
     }
+}
 
-    if (synth.speaking) {
-      synth.cancel(); // Stop ongoing speech
-    }
-
-    if (text.trim().length === 0) {
-      aiResponse.textContent = "⚠️ Please enter a paragraph first.";
-      return;
-    }
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    utterance.rate = 1.0;   // normal speed
-    utterance.pitch = 1.0;  // normal tone
-    utterance.volume = 1.0; // full volume
-
-    // Pick best matching voice (based on language)
-    const voices = synth.getVoices();
-    utterance.voice = voices.find(v => v.lang === lang) || voices[0];
-
-    // Update UI
-    aiResponse.textContent = "🔊 Speaking...";
-    synth.speak(utterance);
-
-    utterance.onend = () => {
-      aiResponse.textContent = "✅ Finished speaking.";
-    };
-
-    utterance.onerror = (err) => {
-      aiResponse.textContent = "❌ Speech error occurred.";
-      console.error(err);
-    };
-  }
-
-  // Button Events
-  speakButton.addEventListener("click", () => {
-    const text = userInput.value;
-    speakText(text);
-  });
-
-  stopButton.addEventListener("click", () => {
-    if (synth.speaking) {
-      synth.cancel();
-      aiResponse.textContent = "⏹ Stopped speaking.";
-    }
-  });
-});
-
-// app.js
-window.addEventListener('DOMContentLoaded', () => {
-    const modeToggleBtn = document.getElementById('modeToggle');
-    
-    if (!modeToggleBtn) {
-        console.warn('modeToggle button not found!');
+speakButton.addEventListener("click", () => {
+    const text = userInput.value.trim();
+    if (!text) {
+        aiResponse.textContent = "Please enter some text.";
         return;
     }
-    
-    modeToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
 
-        if (document.body.classList.contains('dark-mode')) {
-            modeToggleBtn.textContent = '☀️ Light Mode';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            modeToggleBtn.textContent = '🌙 Dark Mode';
-            localStorage.setItem('theme', 'light');
-        }
-    });
+    let utter = new SpeechSynthesisUtterance(text);
 
-    // Apply saved theme on load
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        modeToggleBtn.textContent = '☀️ Light Mode';
-    } else {
-        modeToggleBtn.textContent = '🌙 Dark Mode';
-    }
+    // Language
+    utter.lang = languageSelect.value;
+
+    // Tone (pitch)
+    utter.pitch = parseFloat(toneSelect.value);
+
+    // Emotion settings
+    applyEmotionSettings(utter, emotionSelect.value);
+
+    // Speak
+    synth.speak(utter);
+
+    aiResponse.textContent = "Speaking with emotion...";
 });
-
-
-
-
