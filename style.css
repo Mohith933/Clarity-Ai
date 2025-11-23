@@ -4,15 +4,33 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Light Mode Variables */
+:root {
+  --bg: #f9fafb;
+  --text: #111;
+  --card-bg: #fff;
+  --accent: #2563eb;
+  --subtext: #555;
+}
+
+/* Dark Mode Variables */
+:root.dark-mode {
+  --bg: #121212;
+  --text: #f3f4f6;
+  --card-bg: #1f2937;
+  --accent: #3b82f6;
+  --subtext: #d1d5db;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background: #f9fafb;
-    color: #333;
+    background: var(--bg);
+    color: var(--text);
 }
 h1, h2, h3 {
     font-weight: 700;
-    color: #111;
+    color: var(--text);
 }
 a {
     text-decoration: none;
@@ -25,7 +43,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
-    background: #fff;
+    background: var(--b;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
@@ -58,28 +76,28 @@ a {
 
 /* ========== Buttons ========== */
 .btn-primary {
-    background-color: #2563eb;
-    color: #fff !important;
+    background-color: var(--accent);
+    color:var(--text);
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     transition: 0.3s;
 }
 .btn-primary:hover {
-    background-color: #1e40af;
+    background-color: var(--muted);
 }
 .btn-secondary {
-    background-color: #fff;
+    background-color: var(--bg);
     border: 2px solid #2563eb;
-    color: #2563eb !important;
+    color: var(--text);
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 600;
     transition: 0.3s;
 }
 .btn-secondary:hover {
-    background-color: #2563eb;
-    color: #fff !important;
+    background-color: var(--bg);
+    color: var(--text);
 }
 .btn-primary.small {
     padding: 0.5rem 1rem;
@@ -103,12 +121,12 @@ a {
     margin-bottom: 1rem;
 }
 .hero-text .highlight {
-    color: #2563eb;
+    color: var(--text);
 }
 .hero-text p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    color: #555;
+    color: var(--text);
 }
 .hero-image {
     flex: 1;
@@ -119,14 +137,14 @@ a {
     max-width: 400px;
     border-radius: 1rem;
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    background-color: white;
+    background-color: var(--bg);
 }
 
 /* ========== Features ========== */
 .features {
     text-align: center;
     padding: 4rem 10%;
-    background: #fff;
+    background: var(--bg);
 }
 .features h2 {
     margin-bottom: 2rem;
@@ -151,7 +169,7 @@ a {
 
 /* ========== How It Works ========== */
 .how-it-works {
-    background-color: #f1f5f9;
+    background-color: var(--bg);
     text-align: center;
     padding: 4rem 10%;
 }
@@ -164,7 +182,7 @@ a {
     gap: 2rem;
 }
 .step {
-    background-color: #fff;
+    background-color: var(--bg);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -192,7 +210,7 @@ a {
     gap: 2rem;
 }
 .price-card {
-    background-color: #f9fafb;
+    background-color: var(--card-bg);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -205,7 +223,7 @@ a {
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem 0;
-    color: #2563eb;
+    color: var(--text);
 }
 .popular {
     border: 2px solid #2563eb;
@@ -214,7 +232,7 @@ a {
 
 /* ========== Testimonials ========== */
 .testimonials {
-    background-color: #f1f5f9;
+    background-color: var(--bg);
     padding: 4rem 10%;
     text-align: center;
 }
@@ -227,7 +245,7 @@ a {
     gap: 2rem;
 }
 .testimonial {
-    background-color: #fff;
+    background-color: var(--bg);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -244,7 +262,7 @@ a {
     text-align: center;
     padding: 4rem 10%;
     background-color: linear-gradient(to right, #2563eb, #1e40af);
-    color: #fff;
+    color: var(--text);
 }
 .call-to-action h2 {
     margin-bottom: 1rem;
@@ -259,8 +277,8 @@ a {
     margin-top:25vh;
     text-align: center;
     padding: 2rem 5%;
-    background-color: #111827;
-    color: #f3f4f6;
+    background-color: var(--bg);
+    color: var(--text);
 }
 .footer a {
     color: #f3f4f6;
@@ -304,12 +322,12 @@ textarea {
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 1rem;
-  background: #fff;
+  background: var(--bg);
   transition: 0.3s;
 }
 
 textarea:focus {
-  border-color: #2563eb;
+  border-color: var(--accent);
   box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
   outline: none;
 }
@@ -322,13 +340,13 @@ textarea:focus {
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 1rem;
-  background: #fff;
+  background: var(--bg);
   cursor: pointer;
   transition: 0.3s;
 }
 
 .dropdown:focus {
-  border-color: #2563eb;
+  border-color: var(--accent);
   box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
   outline: none;
 }
@@ -353,21 +371,21 @@ textarea:focus {
 }
 
 .output p {
-  color: #444;
+  color: var(--subtext);
   font-size: 1rem;
 }
 
 /* ========== Dark Mode for Voice App ========== */
 body.dark-mode .app-section {
-  background-color: #1f2937;
-  color: #e0e0e0;
+  background-color: var(--bg);
+  color: var(--text);
   box-shadow: 0 8px 24px rgba(0,0,0,0.7);
 }
 
 body.dark-mode textarea {
-  background-color: #111827;
+  background-color: var(--bg);
   border: 1px solid #374151;
-  color: #e0e0e0;
+  color: var(--text);
 }
 
 body.dark-mode .dropdown {
@@ -535,6 +553,7 @@ body.dark-mode .call-to-action a.btn-secondary:hover {
     max-width: 80%;
   }
 }
+
 
 
 
