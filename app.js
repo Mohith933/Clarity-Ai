@@ -14,47 +14,57 @@ const emotionSelect = document.getElementById("emotionSelect");
 
 const modeToggle = document.getElementById("modeToggle");
 
-// Speech Synthesis
+// ===============================
+// Speech Synthesis API
+// ===============================
 let synth = window.speechSynthesis;
 let voices = [];
 
 // ===============================
-// LOAD VOICES
+// LOAD VOICES (Web Speech API)
 // ===============================
 function loadVoices() {
     voices = synth.getVoices();
-    const languageSelect = document.getElementById('languageSelect'); // Get the select element
 
-    // 1. Define the specific allowed language codes
-    const allowedLangs = new Set(["en-IN", "te-IN", "hi-IN", "ta-IN"]);
-    
-    // 2. Clear dropdown
+    const languageSelect = document.getElementById("languageSelect");
+
+    // Allowed languages (India region only)
+    const allowedLangs = new Set([
+        "en-IN",
+        "te-IN",
+        "hi-IN",
+        "ta-IN"
+    ]);
+
+    // Clear old entries
     languageSelect.innerHTML = "";
 
-    // Set to track languages already added to prevent duplicates from different voices
-    const addedLangs = new Set(); 
+    // Avoid duplicates
+    const added = new Set();
 
     voices.forEach(voice => {
-        const langCode = voice.lang;
-        
-        // 3. Check if the language is allowed AND not already added
-        if (allowedLangs.has(langCode) && !addedLangs.has(langCode)) {
-            addedLangs.add(langCode);
+        const lang = voice.lang;
+
+        // Only add voices matching allowed languages
+        if (allowedLangs.has(lang) && !added.has(lang)) {
+            added.add(lang);
 
             let option = document.createElement("option");
-            option.value = langCode;
-            option.textContent = `${langCode} (${voice.name})`;
+            option.value = lang;
+            option.textContent = `${lang} — ${voice.name}`;
             languageSelect.appendChild(option);
         }
     });
 
-    // 4. Fallback if no allowed voices are found (optional)
-    if (addedLangs.size === 0) {
-        // You might want a fallback or simply leave it blank/show a message
-        languageSelect.innerHTML = `<option value="" disabled selected>No Indian voices found</option>`;
+    // If no supported Indian voices found
+    if (added.size === 0) {
+        languageSelect.innerHTML = `
+            <option value="" disabled selected>No supported voices found</option>
+        `;
     }
 }
 
+// Trigger load
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
