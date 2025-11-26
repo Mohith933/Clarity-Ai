@@ -23,27 +23,35 @@ let voices = [];
 // ===============================
 function loadVoices() {
     voices = synth.getVoices();
+    const languageSelect = document.getElementById('languageSelect'); // Get the select element
 
-    // Clear dropdown
+    // 1. Define the specific allowed language codes
+    const allowedLangs = new Set(["en-IN", "te-IN", "hi-IN", "ta-IN"]);
+    
+    // 2. Clear dropdown
     languageSelect.innerHTML = "";
 
-    // Add detected languages
-    const addedLangs = new Set();
+    // Set to track languages already added to prevent duplicates from different voices
+    const addedLangs = new Set(); 
 
     voices.forEach(voice => {
-        if (!addedLangs.has(voice.lang)) {
-            addedLangs.add(voice.lang);
+        const langCode = voice.lang;
+        
+        // 3. Check if the language is allowed AND not already added
+        if (allowedLangs.has(langCode) && !addedLangs.has(langCode)) {
+            addedLangs.add(langCode);
 
             let option = document.createElement("option");
-            option.value = voice.lang;
-            option.textContent = `${voice.lang} (${voice.name})`;
+            option.value = langCode;
+            option.textContent = `${langCode} (${voice.name})`;
             languageSelect.appendChild(option);
         }
     });
 
-    // If no voices found → show default
-    if (voices.length === 0) {
-        languageSelect.innerHTML = `<option value="en-US">en-US (Default)</option>`;
+    // 4. Fallback if no allowed voices are found (optional)
+    if (addedLangs.size === 0) {
+        // You might want a fallback or simply leave it blank/show a message
+        languageSelect.innerHTML = `<option value="" disabled selected>No Indian voices found</option>`;
     }
 }
 
