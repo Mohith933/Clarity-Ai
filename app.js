@@ -28,43 +28,39 @@ function loadVoices() {
 
     const languageSelect = document.getElementById("languageSelect");
 
-    // Allowed languages (India region only)
+    // Allowed languages (for now only English)
     const allowedLangs = new Set([
-        "en-IN",
-        "te-IN",
-        "hi-IN",
-        "ta-IN"
+        "en-IN"
+        // Later add: "te-IN", "hi-IN", "ta-IN"
     ]);
 
-    // Clear old entries
+    // Clear old dropdown
     languageSelect.innerHTML = "";
 
-    // Avoid duplicates
-    const added = new Set();
+    let englishFound = false;
 
     voices.forEach(voice => {
         const lang = voice.lang;
 
-        // Only add voices matching allowed languages
-        if (allowedLangs.has(lang) && !added.has(lang)) {
-            added.add(lang);
-
+        if (allowedLangs.has(lang)) {
             let option = document.createElement("option");
             option.value = lang;
             option.textContent = `${lang} — ${voice.name}`;
             languageSelect.appendChild(option);
+
+            if (lang === "en-IN") englishFound = true;
         }
     });
 
-    // If no supported Indian voices found
-    if (added.size === 0) {
+    // If English EN-IN not found → fallback
+    if (!englishFound) {
         languageSelect.innerHTML = `
-            <option value="" disabled selected>No supported voices found</option>
+            <option value="en-US" selected>en-US — Default English</option>
         `;
     }
 }
 
-// Trigger load
+// Load voices
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
