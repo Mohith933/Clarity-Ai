@@ -26,33 +26,25 @@ let voices = [];
 function loadVoices() {
     voices = synth.getVoices();
 
-    const languageSelect = document.getElementById("languageSelect");
-
-    // Allowed languages (for now only English)
     const allowedLangs = new Set([
-        "en-IN"
-        // Later add: "te-IN", "hi-IN", "ta-IN"
+        "en-IN"   // Only default English for M0.5
     ]);
 
-    // Clear old dropdown
     languageSelect.innerHTML = "";
-
     let englishFound = false;
 
     voices.forEach(voice => {
-        const lang = voice.lang;
-
-        if (allowedLangs.has(lang)) {
+        if (allowedLangs.has(voice.lang)) {
             let option = document.createElement("option");
-            option.value = lang;
-            option.textContent = `${lang} — ${voice.name}`;
+            option.value = voice.lang;
+            option.textContent = `${voice.lang} — ${voice.name}`;
             languageSelect.appendChild(option);
 
-            if (lang === "en-IN") englishFound = true;
+            if (voice.lang === "en-IN") englishFound = true;
         }
     });
 
-    // If English EN-IN not found → fallback
+    // Fallback if EN-IN not found
     if (!englishFound) {
         languageSelect.innerHTML = `
             <option value="en-US" selected>en-US — Default English</option>
@@ -60,35 +52,48 @@ function loadVoices() {
     }
 }
 
-// Load voices
 speechSynthesis.onvoiceschanged = loadVoices;
 loadVoices();
 
 // ===============================
-// EMOTION SETTINGS
+// EMOTION SETTINGS (corrected)
 // ===============================
 function applyEmotionSettings(utter, emotion) {
+
     switch (emotion) {
+
         case "happy":
-            utter.pitch = 1.4;
-            utter.rate = 1.1;
+            utter.pitch = 1.3;
+            utter.rate = 1.15;
             break;
+
         case "sad":
             utter.pitch = 0.7;
-            utter.rate = 0.9;
+            utter.rate = 0.85;
             break;
+
         case "friendly":
-            utter.pitch = 1.2;
+            utter.pitch = 1.15;
             utter.rate = 1.0;
             break;
+
         case "soft":
             utter.pitch = 0.9;
-            utter.rate = 0.8;
+            utter.rate = 0.9;
+            utter.volume = 0.8;
             break;
-        case "excited":
-            utter.pitch = 1.5;
-            utter.rate = 1.2;
+
+        case "energetic":   // FIXED: matched HTML
+            utter.pitch = 1.4;
+            utter.rate = 1.25;
             break;
+
+        case "calm":        // NEW: matched HTML
+            utter.pitch = 0.85;
+            utter.rate = 0.95;
+            utter.volume = 0.9;
+            break;
+
         default:
             break;
     }
@@ -106,19 +111,15 @@ speakButton.addEventListener("click", () => {
 
     let utter = new SpeechSynthesisUtterance(text);
 
-    // Selected Language
+    // Language
     const selectedLang = languageSelect.value;
     utter.lang = selectedLang;
 
     // Match voice
     const matchVoice = voices.find(v => v.lang === selectedLang);
-    if (matchVoice) {
-        utter.voice = matchVoice;
-    } else {
-        aiResponse.textContent = `⚠️ No voice found for ${selectedLang}, using default voice`;
-    }
+    if (matchVoice) utter.voice = matchVoice;
 
-    // Tone (Pitch)
+    // Tone
     utter.pitch = parseFloat(toneSelect.value);
 
     // Emotion
