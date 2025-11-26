@@ -26,7 +26,11 @@
   <textarea id="userInput" placeholder="Enter your paragraph here..." rows="6"></textarea>
 
   <!-- Language Dropdown -->
-  <<select id="languageSelect"></select>
+  <label>Select Language:</label>
+  <select id="languageSelect" class="dropdown">
+      <!-- JS fills voices dynamically -->
+  </select>
+
   <!-- Tone Dropdown -->
   <label>Select Tone:</label>
   <select id="toneSelect" class="dropdown">
@@ -34,8 +38,10 @@
     <option value="1">Medium</option>
     <option value="1.3">High</option>
   </select>
-<label>Select Emotion:</label>
-<select id="emotionSelect" class="dropdown">
+
+  <!-- Emotion Dropdown -->
+  <label>Select Emotion:</label>
+  <select id="emotionSelect" class="dropdown">
     <option value="normal">Normal</option>
     <option value="happy">Happy</option>
     <option value="friendly">Friendly</option>
@@ -43,7 +49,7 @@
     <option value="sad">Sad</option>
     <option value="energetic">Energetic</option>
     <option value="calm">Calm</option>
-</select>
+  </select>
 
   <div class="controls">
     <button id="speakButton" class="btn-primary">🔊 Speak</button>
