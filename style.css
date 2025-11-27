@@ -454,7 +454,18 @@ body.dark-mode .footer{
   }
    .row { flex-direction:column; } .col { flex:1; min-width:100%; }
 
+   
+ .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-image img {
+    max-width: 80%;
+  }
+   
+
 }
+
 
 
 
