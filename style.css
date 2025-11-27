@@ -377,14 +377,6 @@ kbd{background:var(--card-bg);border:1px solid var(--secondary-border);padding:.
     text-align: center;
   }
 
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-
-  .hero-image img {
-    max-width: 80%;
-  }
-
 /* ========== Small soft-glow accent for key elements ========== */
 .glow{
   box-shadow:0 8px 30px var(--accent-weak);
@@ -461,6 +453,7 @@ body.dark-mode .footer{
     .history-item { padding:.45rem .6rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--secondary-border); display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
 
     @media (max-width:900px){ .row { flex-direction:column; } .col { flex:1; min-width:100%; }}
+
 
 
 
