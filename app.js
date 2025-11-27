@@ -29,6 +29,13 @@ const textPreview = document.getElementById("textPreview");
 const openDashboard = document.getElementById("openDashboard");
 const dashboardPage = document.getElementById("dashboardPage");
 const backToStudio = document.getElementById("backToStudio");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});
+
 
 // Speech Synthesis
 let synth = window.speechSynthesis;
