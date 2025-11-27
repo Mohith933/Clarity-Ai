@@ -391,15 +391,17 @@ kbd{background:var(--card-bg);border:1px solid var(--secondary-border);padding:.
   transition:box-shadow 240ms;
 }
 
-/* Only force transparent background for elements that must NOT have white */
-body.dark-mode section,
+/* Force all sections to follow dark mode variable */
 body.dark-mode .hero,
 body.dark-mode .features,
 body.dark-mode .how-it-works,
 body.dark-mode .pricing,
-body.dark-mode .testimonials {
+body.dark-mode .testimonials,
+body.dark-mode .app-section {
+  background: transparent !important;
   background-color: transparent !important;
 }
+
 
 /* Keep card-based components with dark backgrounds */
 body.dark-mode .navbar,
@@ -459,6 +461,7 @@ body.dark-mode .footer{
     .history-item { padding:.45rem .6rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--secondary-border); display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
 
     @media (max-width:900px){ .row { flex-direction:column; } .col { flex:1; min-width:100%; }}
+
 
 
 
