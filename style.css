@@ -93,7 +93,7 @@ a{color:inherit;text-decoration:none}
     align-items: center;
     justify-content: space-between;
     padding: 5% 10%;
-    background: linear-gradient(to right, var(--section-alt-bg), var(--bg-color));
+    background: linear-gradient(to right, #eef2ff, #ffffff);
     gap: 2rem;
 }
 .hero-text {
@@ -104,12 +104,12 @@ a{color:inherit;text-decoration:none}
     margin-bottom: 1rem;
 }
 .hero-text .highlight {
-    color: var(--highlight);
+    color: #2563eb;
 }
 .hero-text p {
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
-    color: var(--text-color);
+    color: #555;
 }
 .hero-image {
     flex: 1;
@@ -120,14 +120,14 @@ a{color:inherit;text-decoration:none}
     max-width: 400px;
     border-radius: 1rem;
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-    background: var(--card-bg);
+    background: white;
 }
 
 /* ========== Features ========== */
 .features {
     text-align: center;
     padding: 4rem 10%;
-    background: var(--bg-color);
+    background: #fff;
 }
 .features h2 {
     margin-bottom: 2rem;
@@ -139,11 +139,11 @@ a{color:inherit;text-decoration:none}
     gap: 2rem;
 }
 .feature-card {
-    background: var(--card-bg);
+    background: #f9fafb;
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 .feature-card:hover {
     transform: translateY(-5px);
@@ -152,7 +152,7 @@ a{color:inherit;text-decoration:none}
 
 /* ========== How It Works ========== */
 .how-it-works {
-    background: var(--section-alt-bg);
+    background: #f1f5f9;
     text-align: center;
     padding: 4rem 10%;
 }
@@ -165,7 +165,7 @@ a{color:inherit;text-decoration:none}
     gap: 2rem;
 }
 .step {
-    background: var(--card-bg);
+    background: #fff;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -182,7 +182,7 @@ a{color:inherit;text-decoration:none}
 .pricing {
     text-align: center;
     padding: 4rem 10%;
-    background: var(--bg-color);
+    background: #fff;
 }
 .pricing h2 {
     margin-bottom: 2rem;
@@ -193,7 +193,7 @@ a{color:inherit;text-decoration:none}
     gap: 2rem;
 }
 .price-card {
-     background: var(--card-bg);
+    background: #f9fafb;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -206,16 +206,16 @@ a{color:inherit;text-decoration:none}
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem 0;
-    color: var(--highlight);
+    color: #2563eb;
 }
 .popular {
-    border: 2px solid var(--highlight);
+    border: 2px solid #2563eb;
     transform: scale(1.05);
 }
 
 /* ========== Testimonials ========== */
 .testimonials {
-    background: var(--section-alt-bg);
+    background: #f1f5f9;
     padding: 4rem 10%;
     text-align: center;
 }
@@ -228,7 +228,7 @@ a{color:inherit;text-decoration:none}
     gap: 2rem;
 }
 .testimonial {
-     background: var(--card-bg);
+    background: #fff;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -244,8 +244,8 @@ a{color:inherit;text-decoration:none}
 .call-to-action {
     text-align: center;
     padding: 4rem 10%;
-    background: var(--cta-bg);
-  color: var(--cta-text);
+    background: linear-gradient(to right, #2563eb, #1e40af);
+    color: #fff;
 }
 .call-to-action h2 {
     margin-bottom: 1rem;
@@ -259,10 +259,11 @@ a{color:inherit;text-decoration:none}
 .footer {
     text-align: center;
     padding: 2rem 5%;
-    color: var(--footer-text);
+    background: #111827;
+    color: #f3f4f6;
 }
 .footer a {
-    color: var(--footer-text);
+    color: #f3f4f6;
     margin: 0 0.5rem;
     font-size: 0.9rem;
 }
@@ -458,6 +459,7 @@ body.dark-mode .footer{
     .history-item { padding:.45rem .6rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--secondary-border); display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
 
     @media (max-width:900px){ .row { flex-direction:column; } .col { flex:1; min-width:100%; }}
+
 
 
 
