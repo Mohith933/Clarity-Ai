@@ -417,3 +417,44 @@ body.dark-mode .footer{
 /* small animation for theme change */
 *{transition:background-color .22s ease,color .22s ease,box-shadow .22s ease,border-color .22s ease}
 
+    /* Small additions for M0.6 UI (waveform, profile, presets list) */
+    .row { display:flex; gap:1rem; align-items:flex-start; flex-wrap:wrap; }
+    .col { flex:1; min-width:260px; }
+
+    /* profile card */
+    .profile-card {
+      background:var(--card-bg);
+      padding:1rem;
+      border-radius:10px;
+      box-shadow:var(--shadow);
+    }
+    .profile-card h3 { margin-bottom:.25rem; color:var(--accent); }
+    .profile-meta { font-size:.9rem; color:var(--muted); margin-bottom:.6rem; }
+
+    /* presets */
+    .preset-list { display:flex; flex-direction:column; gap:.6rem; margin-top:.6rem; }
+    .preset-item {
+      display:flex; justify-content:space-between; gap:.6rem; align-items:center;
+      padding:.5rem .6rem; border-radius:8px; border:1px solid var(--secondary-border);
+      background:var(--card-bg);
+    }
+    .preset-actions button { margin-left:.4rem; }
+
+    /* controls small */
+    .small-input { width:100%; padding:.5rem; border-radius:8px; border:1px solid var(--secondary-border); background:var(--card-bg); color:var(--text); }
+
+    /* waveform canvas */
+    #waveCanvas { width:100%; height:64px; border-radius:8px; background: linear-gradient(90deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)); display:block; margin-top:.6rem; }
+
+    /* analyzer highlights */
+    .text-highlight { white-space:pre-wrap; line-height:1.45; padding:.5rem; border-radius:8px; }
+    .hl-happy { background: linear-gradient(90deg, rgba(255,250,205,0.5), transparent); }
+    .hl-sad { background: linear-gradient(90deg, rgba(222,234,255,0.45), transparent); }
+    .hl-excited { background: linear-gradient(90deg, rgba(255,230,230,0.45), transparent); }
+    .hl-calm { background: linear-gradient(90deg, rgba(230,255,240,0.45), transparent); }
+
+    /* history list */
+    .history-list { display:flex; flex-direction:column; gap:.5rem; margin-top:.6rem; }
+    .history-item { padding:.45rem .6rem; border-radius:8px; background:var(--card-bg); border:1px solid var(--secondary-border); display:flex; justify-content:space-between; align-items:center; gap:.5rem; }
+
+    @media (max-width:900px){ .row { flex-direction:column; } }
