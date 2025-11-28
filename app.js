@@ -31,11 +31,20 @@ const dashboardPage = document.getElementById("dashboardPage");
 const backToStudio = document.getElementById("backToStudio");
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
+const modeToggle = document.getElementById("modeToggle");
 
-hamburger.addEventListener("click", () => {
-  navMenu.classList.toggle("open");
-  hamburger.classList.toggle("active"); // for animation
-});
+if (hamburger && navMenu) {
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("open");
+    hamburger.classList.toggle("active");
+  });
+}
+
+if (modeToggle) {
+  modeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+}
 
 
 // Speech Synthesis
