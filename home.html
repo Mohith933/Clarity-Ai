@@ -8,14 +8,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar -->
-   <nav class="navbar">
-    <div class="logo">MyTone AI</div>
-    <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="index.html" class="active">Voice App</a></li>
-    </ul>
-    <button id="modeToggle" class="btn-secondary">🌙 Dark Mode</button>
+     <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo">MyTone AI</div>
+
+  <!-- Hamburger -->
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <ul class="nav-links" id="navMenu">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="index.html" class="active">Voice App</a></li>
+    <li><a href="#" id="openDashboard">Dashboard</a></li>
+  </ul>
+
+  <button id="modeToggle" class="btn-secondary">🌙 Dark Mode</button>
 </nav>
 
    <!-- Hero Section -->
