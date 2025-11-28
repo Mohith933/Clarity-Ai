@@ -495,8 +495,8 @@ body.dark-mode .footer{
 
   .nav-links {
     position: absolute;
-    top: 70px;
-    right: 20px;
+    top: 50px;
+    right: 10px;
     background: var(--card-bg);
     flex-direction: column;
     width: 160px;
@@ -505,6 +505,10 @@ body.dark-mode .footer{
     box-shadow: var(--shadow);
     display: none;
   }
+
+   .hamburger.open{
+      display:flex;
+   }
 
   .nav-links.open {
     display: flex;
@@ -517,6 +521,7 @@ body.dark-mode .footer{
    
 
 }
+
 
 
 
