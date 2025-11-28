@@ -34,7 +34,7 @@ const backToStudio = document.getElementById("backToStudio");
 // ===============================
 
 // Get Elements (declare ONLY once)
-const hamburger = document.getElementById("hamburger");
+const hamburger = document.getElementById("hamburgerBtn");
 const navMenu = document.getElementById("navMenu");
 const modeToggle = document.getElementById("modeToggle");
 
