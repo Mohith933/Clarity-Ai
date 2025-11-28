@@ -29,10 +29,18 @@ const textPreview = document.getElementById("textPreview");
 const openDashboard = document.getElementById("openDashboard");
 const dashboardPage = document.getElementById("dashboardPage");
 const backToStudio = document.getElementById("backToStudio");
+// ===============================
+// NAVBAR : Hamburger + Dark Mode
+// ===============================
+
+// Get Elements (declare ONLY once)
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("navMenu");
 const modeToggle = document.getElementById("modeToggle");
 
+// -------------------------------
+// Hamburger Menu Toggle
+// -------------------------------
 if (hamburger && navMenu) {
   hamburger.addEventListener("click", () => {
     navMenu.classList.toggle("open");
@@ -40,9 +48,30 @@ if (hamburger && navMenu) {
   });
 }
 
+// -------------------------------
+// Close Menu When Clicking a Link (Mobile)
+// -------------------------------
+if (navMenu) {
+  navMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("open");
+      hamburger.classList.remove("active");
+    });
+  });
+}
+
+// -------------------------------
+// Dark Mode Toggle
+// -------------------------------
 if (modeToggle) {
   modeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+      modeToggle.textContent = "☀️ Light Mode";
+    } else {
+      modeToggle.textContent = "🌙 Dark Mode";
+    }
   });
 }
 
@@ -419,18 +448,3 @@ renderPresetList();
 renderHistory();
 
 // -----------------------------
-// Dark Mode toggle (persist)
-if (localStorage.getItem('theme') === 'dark') {
-    document.body.classList.add('dark-mode');
-    modeToggle.textContent = '☀️ Light Mode';
-}
-modeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme','dark');
-        modeToggle.textContent = '☀️ Light Mode';
-    } else {
-        localStorage.setItem('theme','light');
-        modeToggle.textContent = '🌙 Dark Mode';
-    }
-});
