@@ -101,6 +101,18 @@ a{color:inherit;text-decoration:none}
   list-style: none;
   gap: 20px;
 }
+/* Hamburger Active Animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
 /* ========== Hero Section ========== */
 .hero {
     display: flex;
